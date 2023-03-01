@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+# Rails Websockets + React using ActionCable
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A Ruby on Rails API using ActionCable and React to create a simple Chat. 
 
-## Available Scripts
+### Before starting
 
-In the project directory, you can run:
+I recommend you to follow the tutorials recommended bellow in the links to understand this project.
 
-### `npm start`
+### Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Before starting you need some background on Ruby and Rails. Check the links bellow.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+You need a working environment with Ruby on Rails installed and PostgreSQL as well.
 
-### `npm test`
+In my case I used WSL2 with Ubuntu 20.04. See the links bellow.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+It's necessary to install Postgresql. See the links bellow to install it on WSL2.
 
-### `npm run build`
+### Installing
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Open a command line console and clone this project.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+git clone https://github.com/tcrurav/RailsReactWebsockets
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Go to the new created directory
 
-### `npm run eject`
+```
+cd RailsReactWebsockets/backend
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Install all dependencies
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+bundle install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Change the file config/database.yml
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+database: ruby_bicycles_development
+username: postgres  
+password: <your password>
+```
 
-## Learn More
+Now make all migrations:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+rails db:create db:migrate
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Boot your API
 
-### Code Splitting
+```
+rails s
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Now it's time to start your frontend
 
-### Analyzing the Bundle Size
+```
+cd RailsReactWebsockets/frontend
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+install all dependencies:
 
-### Making a Progressive Web App
+```
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+run the frontend in 2 browser windows or tabs to see the websockets working:
 
-### Advanced Configuration
+```
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Enjoy!!!
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Built With
 
-### `npm run build` fails to minify
+* [Rails](https://rubyonrails.org/) - Rails is a full-stack framework. It ships with all the tools needed to build amazing web apps on both the front and back end
+* [ActionCable](https://guides.rubyonrails.org/action_cable_overview.html) - Action Cable seamlessly integrates WebSockets with the rest of your Rails application.
+* [PostgreSQL](https://www.postgresql.org/) - The World's Most Advanced Open Source Relational Database
+* [WSL 2 - Ubuntu 20.04](https://ubuntu.com/tutorials/install-ubuntu-on-wsl2-on-windows-10) - Install Ubuntu on WSL2 on Windows.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Acknowledgments
+
+* https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-database. Install Postgresql on WSL2.
+* https://www.youtube.com/watch?v=DED9YZWVbO8. Installing rvm and ruby on Windows with Ubuntu bash using WSL2.
+* https://www.fmendez.com/web-sockets-with-react-redux-and-ruby-on-rails. I use this tutorial to create the basics of this simple example.
+* https://dev.to/lisahjung/beginner-s-guide-to-creating-an-api-from-scratch-using-rails-2eie. Beginner's guide to creating an API from scratch (using Rails 6).
