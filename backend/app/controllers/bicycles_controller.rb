@@ -37,7 +37,10 @@ class BicyclesController < ApplicationController
   end
 
   def send_message
-    ActionCable.server.broadcast('orbea_fun_club', "new bicycle has been created")
+    @message = params[:message]
+    ActionCable.server.broadcast('orbea_fun_club', @message)
+
+    render json: { message: "Successfull"}
   end
 
 end
